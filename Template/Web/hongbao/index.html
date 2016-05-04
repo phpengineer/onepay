@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>春季会员大回馈</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<style type="text/css">
+		body,div,p,span,ul,li,h1,dl,dt,a {margin:0 auto;padding:0;}
+		body {background:#E23C3C;font-family: 'Microsoft YaHei'}
+		.hbtopa,.hbtopb {max-width: 980px;min-width: 320px;}
+		.hbtopa img,.hbtopb img {display: block;width: 100%;}
+		.hbtop {background: #6FD8F5;}
+		.hbtops {background: #E23C3C;}
+		h1 {display: block;font-size: 1.5rem;color:#FBDE57;text-align: center}
+		ul {display: block;margin-top:20px;}
+		ul li {display: block;font-size: 1.3rem;color:#FBDE57;text-align: center;line-height: 1.8;width: 96%}
+		dl {display: block;max-width: 980px;min-width: 320px;background: rgba(255,255,255,.3);border-radius: 5px;margin-top:15px;margin-bottom: 15px;box-sizing:border-box;padding:10px;}
+		dl dt {display: block;font-size: 1rem;color:#FFFFBF;line-height: 1.8;}
+		.fxan {display: block;width: 160px;height: 45px;background: #FCD93F;border-radius: 30px;margin-top: 15px;text-align: center;line-height: 45px;margin-bottom: 15px;}
+		.qrcode {display: block;text-align: center;margin-top:10px;margin-bottom: 10px}
+		.fx {position: absolute;right: 0;top: 0;display:block;width: 100%;z-index: 9999;}
+		.fx img {display:block;width: 100%;z-index: 9999;}
+		.winner{list-style:none;height:100px;overflow: hidden;}
+	</style>
+</head>
+<body>
+	<div class="hbtop">
+		<div class="hbtopa">
+			<img src="{$web_tplpath}hongbao/images/hongb1.jpg">
+		</div>
+	</div>
+	<div class="hbtops">
+		<div class="hbtopa">
+			<img src="{$web_tplpath}hongbao/images/hongb2.jpg">
+		</div>
+	</div>
+	<h1>中奖纪录</h1>
+	<dl class="winner" id="win1">
+		<volist name=":R('Activity/hongbao_list')" id="list">
+			<dt>恭喜{$list['nickname']}获得红包</dt>
+		</volist>
+	</dl>
+	<h1>活动说明</h1>
+	<ul>
+		<li>春季会员福利。</li>
+		<li>凡是关注“1元欢乐GO”微信公众号的会员</li>
+		<li>将本页分享到您的朋友圈。即可获得红包</li>
+		<li>分享成功后，红包自动发放到您的微信账号</li>
+		<li>扫描下方二维码关注公众号，参与本次活动</li>
+	</ul>
+	<div class="qrcode">
+		<img src="{$web_tplpath}/images/qrcode.jpg" width="200">
+	</div>
+	<script src="{$web_tplpath}js/jquery.min.js"></script>
+	<script type="text/javascript">
+		setInterval(function(){ 
+			var newList=$('dl :first').clone(true); 
+			$('dl').append(newList);
+			$('dl :first').remove();
+		},800); 
+	</script>
+</body>
+</html>

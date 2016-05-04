@@ -1,0 +1,81 @@
+<extend name="Public/base"/>
+
+<block name="body">
+<div>
+<div class="page-head">
+	<h2>联盟提现</h2>
+</div>
+<div class="cl-mcont">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="block-flat">
+				<div class="header">							
+					<h3 class="hthin">{$meta_title}</h3>
+				</div>
+				<div class="content">
+					<div class="col-sm-12">
+						<div class="pull-right">
+							<div class="btn-group">
+							  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+								<switch name="Think.get.type">
+									<case value="1">已结算</case>    
+									<case value="0">未结算</case>    
+									<default />所有记录
+								</switch>
+								<span class="caret"></span>
+							  </button>
+							  <ul class="dropdown-menu" role="menu">
+								<li><a href="{:U('pay')}">所有记录</a></li>
+								<li><a href="{:U('pay',array('type'=>1))}">已结算</a></li>
+								<li><a href="{:U('pay',array('type'=>0))}">未结算</a></li>
+							  </ul>
+							</div>
+						</div>
+					</div>
+					<table class="no-border blue">
+						<thead class="no-border">
+						<tr>
+							<th style="width:20%;">提现用户</th>
+							<th style="width:30%;">网站名称</th>
+							<th style="width:20%;">提现时间</th>
+							<th style="width:20%;">提现金额</th>
+							<th class="text-right">操作</th>
+						</tr>
+						</thead>
+						<notempty name="_list">
+						<tbody class="no-border-y">
+						<volist name="_list" id="vo">
+						<tr>
+							<td style="width:20%;">{$vo.username}</td>
+							<td style="width:30%;"><a href="{$vo['web_url']}" target="_blank">{$vo['web_name']}</a></td>
+							<td style="width:20%;">{$vo.create_time|time_format}</td>
+							<td style="width:30%;">{$vo.price}</td>
+							<td class="text-right"><a data-placement="left" data-toggle="tooltip" data-original-title="提现" class="label <eq name="vo['pay_state']" value="1">label-default<else />label-success</eq> opiframe" href="#" url="{:U('Union/edit?id='.$vo['id'])}" id="pid_{$vo['id']}"><i class="fa fa-money"></i></a></td>
+						</tr>
+						</volist>
+						</tbody>
+						<else/>
+						<td colspan="4"> aOh! 暂时还没有内容! </td>
+						</notempty>
+					</table>
+					<div class="content col-lg-12 pull-left">
+                        <div class="panel-foot text-center">
+                            <div class="page">{$_page}</div>
+                        </div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</block>
+<block name="script">
+	<js href="__JS__/behaviour/weixin.js" />
+	<script type="text/javascript">
+		$(document).ready(function(){
+			highlight_subnav('{:U('Union/pay')}');
+		});
+	</script>
+</block>

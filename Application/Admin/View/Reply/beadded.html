@@ -1,0 +1,26 @@
+<extend name="Public/base"/>
+<block name="body">
+<div>
+	<div class="page-head">
+		<h2>消息</h2>
+	</div>
+	<div class="cl-mcont">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="block-flat">
+					<p class="color-danger">请先配置微信接口后使用</p>
+					<p class="color-primary">如需帮助安装调试请联系 QQ:489234</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</block>
+<block name="script">
+	<js href="__JS__/behaviour/weixin.js" />
+	<script type="text/javascript">
+$(document).ready(function(){
+	highlight_subnav('{:U('Reply/beadded')}');
+});
+</script>
+</block>

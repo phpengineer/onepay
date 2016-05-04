@@ -1,0 +1,87 @@
+<extend name="Public/base"/>
+<block name="body">
+<div>
+<div class="page-head">
+	<h2>联盟网站</h2>
+</div>
+<div class="cl-mcont">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="block-flat">
+				<div class="header">							
+					<h3 class="hthin">{$meta_title}</h3>
+				</div>
+				<div class="content">
+					<div class="col-sm-12">
+						<label class="pull-left control-label">网站名称(或网站ID)</label>
+						<div class="col-sm-3">
+							<input type="text" name="keyword" class="form-control">
+						</div>
+						<div class="col-sm-2">
+							<button type="button" id="search" url="{:U('index')}" class="btn btn-success">搜素</button>
+						</div>
+					</div>
+					<table class="no-border blue">
+						<thead class="no-border">
+						<tr>
+							<th style="width:20%;">网站名称</th>
+							<th style="width:15%;">网站地址</th>
+							<th style="width:20%;">注册时间</th>
+							<th style="width:10%;">用户数量</th>
+							<th style="width:10%;">网站类型</th>
+							<th style="width:10%;">购买数量</th>
+							<th style="width:15%;">当前收入</th>
+						</tr>
+						</thead>
+						<notempty name="_list">
+						<tbody class="no-border-y">
+						<volist name="_list" id="vo">
+						<tr>
+							<td style="width:20%;"><a href="{$vo['web_url']}" target="_blank">{$vo['web_name']}</a></td>
+							<td style="width:15%;">{$vo.web_url}</td>
+							<td style="width:20%;">{$vo.reg_time|time_format}</td>
+							<td style="width:10%;"><a class="opiframe" href="#" url="{:U('union/user?id='.$vo['id'])}" data-name="用户信息">{$vo.user_count}</a></td>
+							<td style="width:10%;">{:get_union_type($vo['web_type'])}</td>
+							<td style="width:10%;"><a class="opiframe" href="#" url="{:U('union/data?id='.$vo['id'])}" data-name="交易信息">{$vo.pay_count}</a></td>
+							<td style="width:15%;">{$vo.black}</td>
+						</tr>
+						</volist>
+						</tbody>
+						<else/>
+						<td colspan="7"> aOh! 暂时还没有内容! </td>
+						</notempty>
+					</table>
+					<div class="content col-lg-12 pull-left">
+                        <div class="panel-foot text-center">
+                            <div class="page">{$_page}</div>
+                        </div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</block>
+<block name="script">
+	<js href="__JS__/behaviour/weixin.js" />
+	<script type="text/javascript">
+		$(document).ready(function(){
+			highlight_subnav('{:U('Union/index')}');
+			//搜索功能
+			$("#search").click(function(){
+				var url = $(this).attr('url');
+				var query = $(this).parents().prev().children('input').serialize();
+		        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
+		        query = query.replace(/^&/g,'');
+		        if( url.indexOf('?')>0 ){
+		            url += '&' + query;
+		        }else{
+		            url += '?' + query;
+		        }
+				window.location.href = url;
+			});
+		});
+	</script>
+</block>

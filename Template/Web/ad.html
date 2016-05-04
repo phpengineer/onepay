@@ -1,0 +1,33 @@
+<div style="width: 910px;height: 108px;background:url(http://www.1yuanjiang.com/Picture/Activity/ad001.jpg) no-repeat left center;margin:0 auto;padding:0;padding-left: 270px">
+	<volist name="shop" id="vo">
+	<div style="width: 264px;height: 100px;margin:0 auto;padding:0;display: inline-block;margin-left: 50px;margin-top:3px">
+		<div style="width: 98px;height: 98px;margin:0 auto;padding:1px;float: left;border:1px solid #888"><img src="{$vo.pic}" style="width: 98px;height: 98px;"></div>
+		<div style="width: 151px;height: 100px;margin:0px auto;padding:0;margin-left: 11px;float: left;">
+			<h3 style="width: 151px;height: 36px;line-height: 18px;font-size: 14px;margin:0 auto;padding:0;overflow: hidden;color:#555">{$vo.name}</h3>
+			<div style="position: relative;width: 151px;height: 6px;background: #eee;border-radius: 12px;margin:0 auto;padding:0">
+				<div style="position: absolute;left: 0;top:0;width: {$vo.jd}%;height: 6px;border-radius: 12px;background-image: linear-gradient(to bottom,#f8da9c,#f5c462 70%,#f2b63c);border:1px;border: 1px solid;border-color: #f0ad24 #eba310 #c5880d;">
+				</div>
+			</div>
+			<div style="width: 151px;height: 25px;line-height: 25px;margin:0 auto;padding:0;font-size: 12px;color:#555">进度{$vo.jd}%</div>
+			<a href="{$vo.url}" style="display:block;width: 120px;height: 30px;margin:0 auto;padding:0;background: #FF7373;font-size: 18px;color:#fff;text-align: center;line-height: 30px;border-radius: 5px;text-decoration: none;font-family: 'Hiragino Sans GB','Microsoft YaHei';margin-top:5px">立即夺宝</a>
+		</div>
+	</div>
+	</volist>
+	<div class="user_list" style="width: 215px;height: 100px;margin:0 auto;padding:0;display: inline-block;margin-left: 50px;">
+		<div class="box"><div class="list">
+		<volist name="lottery" id="vo">
+		<div style="width: 215px;height: 40px;margin:0 auto;padding:0;margin-top:13px">
+			<div style="float:left;width: 40px;height: 40px"><img src="{:get_user_pic($vo['uid'])}" style="width: 40px;height: 40px"></div>
+			<a href="{:U('user/user?id='.$vo['uid'])}" style="float: left;width: 105px;height: 21px;line-height: 21px;overflow: hidden;margin-left: 8px;white-space: nowrap;text-overflow: ellipsis;color:#217FBC;font-size: 14px;text-decoration: none">{:get_user_name($vo['uid'])}</a>
+			<span style="float: right;width:60px;height:21px;line-height:21px;text-align: right;margin:0 auto;padding:0;font-size:12px;color:#888">{:time_format($vo["kaijang_timing"],"于m月d日")}</span>
+			<div style="float:left;width: 162px;font-size: 12px;overflow: hidden;white-space: nowrap;margin-left: 8px;margin-top:3px">{$vo.name} (<small>{$vo.no}</small>期)</a></div>
+		</div>
+		</volist>
+		</div></div>
+	</div>
+</div>
+<script src="{$web_tplpath}js/jquery.min.js"></script>
+<script src="{$web_tplpath}js/jquery.cxscroll.min.js"></script>
+<script type="text/javascript">
+	$(".user_list").cxScroll({direction:"bottom",speed:500,time:1500,plus:false,minus:false});
+</script>
